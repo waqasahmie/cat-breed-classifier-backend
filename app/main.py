@@ -3,6 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 import shutil
 import os
 from app.predict import predict_image
+import uvicorn  # Import uvicorn to run the app
 
 app = FastAPI()
 
@@ -29,5 +30,8 @@ async def predict(file: UploadFile = File(...)):
         os.remove(image_path)
 
     return {"predictions": predictions}
-if __name__ == '__main__':
-    app.run(debug=True, port=os.getenv("PORT", default=5000))
+
+# If run directly, use uvicorn to start the app
+if __name__ == "__main__":
+    port = int(os.getenv("PORT", 8000))  # Get PORT from env variable, fallback to 8000
+    uvicorn.run(app, host="0.0.0.0", port=port)  # Run the app with Uvicorn
