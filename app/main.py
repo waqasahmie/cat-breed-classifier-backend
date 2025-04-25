@@ -33,5 +33,5 @@ async def predict(file: UploadFile = File(...)):
 
 # If run directly, use uvicorn to start the app
 if __name__ == "__main__":
-    port = int(os.getenv("PORT", 8000))  # Get PORT from env variable, fallback to 8000
+    port = int(os.getenv("PORT", default=8000))  # Get PORT from env variable, fallback to 8000
     uvicorn.run(app.main:app, host="0.0.0.0", port=port)  # Run the app with Uvicorn
