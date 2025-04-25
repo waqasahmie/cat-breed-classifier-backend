@@ -29,3 +29,5 @@ async def predict(file: UploadFile = File(...)):
         os.remove(image_path)
 
     return {"predictions": predictions}
+if __name__ == '__main__':
+    app.run(debug=True, port=os.getenv("PORT", default=5000))
