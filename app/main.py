@@ -33,10 +33,6 @@ async def predict(file: UploadFile = File(...)):
     known_classes = ["Abyssinian", "Bengal", "Birman", "Bombay", "BritishShorthair", 
                      "EgyptianMau", "MaineCoon", "Persian", "Ragdoll", "RussianBlue", 
                      "Siamese", "Sphynx"]
-    
-    # If the breed is not recognized
-    if predictions and predictions[0][0] not in known_classes:
-        return {"predictions": [["Other", 0.0]], "message": "Breed not recognized, returned as Other"}
 
     return {"predictions": predictions}
 
