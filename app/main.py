@@ -16,6 +16,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# ✅ Health check or friendly root message
+@app.get("/")
+async def root():
+    return {"message": "Cat Breed Classifier API is running :)"}
+
 @app.post("/predict/")
 async def predict(file: UploadFile = File(...)):
     # Save uploaded image temporarily
